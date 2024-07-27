@@ -1,6 +1,9 @@
 package org.api.bank.pojo;
 
+import org.api.bank.validation.Notification;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 public class BankTransaction {
@@ -9,7 +12,7 @@ public class BankTransaction {
     private final double amount;
     private final String description;
 
-    public BankTransaction(final LocalDate date, final double amount, final String description){
+    public BankTransaction(final LocalDate date, final double amount, final String description) {
         this.date = date;
         this.amount = amount;
         this.description = description;
@@ -47,5 +50,19 @@ public class BankTransaction {
     @Override
     public int hashCode() {
         return Objects.hash(date, amount, description);
+    }
+
+    public Notification validate() {
+        final Notification notification = new Notification();
+
+        if (this.description.length() > 100) {
+            notification.addError("The description is too long");
+        }
+
+        if(date.isAfter(LocalDate.now())) {
+            notification.addError("Date cannot be in the future");
+        }
+
+        return notification;
     }
 }
