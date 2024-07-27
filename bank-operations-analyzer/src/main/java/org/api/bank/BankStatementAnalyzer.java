@@ -1,6 +1,7 @@
 package org.api.bank;
 
 
+import org.api.bank.filter.BankTransactionIsFebruaryAndExpensive;
 import org.api.bank.parser.BankStatementParser;
 import org.api.bank.pojo.BankTransaction;
 
@@ -18,14 +19,24 @@ public class BankStatementAnalyzer {
         final Path path = Paths.get(pathResources + fileName);
         final List<String> lines = Files.readAllLines(path);
 
-        final List<BankTransaction> bankTransactions = bankStatementParser.parseLineFrom(lines);
+        System.out.println("Print all: ");
+        final List<BankTransaction> bankTransactionsAll = bankStatementParser.parseLineFrom(lines);
 
-        for (BankTransaction bankTransaction : bankTransactions) {
+        for (BankTransaction bankTransaction : bankTransactionsAll) {
             System.out.println(bankTransaction.toString());
         }
 
-        final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
+        System.out.println();
+        System.out.println("Print analyze: ");
+        final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactionsAll);
         collectSummary(bankStatementProcessor);
+
+        System.out.println();
+        System.out.println("Print by filter: ");
+        final List<BankTransaction> bankTransactionsByFilter = bankStatementProcessor.findTransactions(new BankTransactionIsFebruaryAndExpensive());
+        for (BankTransaction bankTransaction : bankTransactionsByFilter) {
+            System.out.println(bankTransaction.toString());
+        }
     }
 
     private static void collectSummary(final BankStatementProcessor bankStatementProcessor) {
