@@ -1,4 +1,6 @@
-package org.api.doc.manag.system;
+package org.api.doc.manag.system.importer;
+
+import org.api.doc.manag.system.pojo.Document;
 
 import java.io.File;
 import java.io.IOException;
