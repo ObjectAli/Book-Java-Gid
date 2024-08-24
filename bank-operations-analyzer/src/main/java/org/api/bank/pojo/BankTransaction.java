@@ -3,7 +3,6 @@ package org.api.bank.pojo;
 import org.api.bank.validation.Notification;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 public class BankTransaction {

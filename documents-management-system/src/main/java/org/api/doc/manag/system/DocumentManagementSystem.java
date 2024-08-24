@@ -37,9 +37,6 @@ public class DocumentManagementSystem {
 
         final int separatorIndex = path.lastIndexOf('.');
         if (separatorIndex != -1) {
-            if (separatorIndex == path.length()) {
-                throw new UnknownFileTypeException("No extension found For file: " + path);
-            }
             final String extension = path.substring(separatorIndex + 1);
             final Importer importer = extensionToImporter.get(extension);
             if (importer == null) {
