@@ -1,5 +1,9 @@
 /documents-management-system/target/
 /bank-operations-analyzer/target/
-
+/business-rules-engine/target/
 /out/
 /.idea/
+
+*.idea
+*.iml
+target/
