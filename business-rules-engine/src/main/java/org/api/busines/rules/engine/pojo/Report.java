@@ -1,0 +1,37 @@
+package org.api.busines.rules.engine.pojo;
+
+import org.api.busines.rules.engine.interfaces.ConditionalAction;
+
+public class Report {
+
+    private final ConditionalAction conditionalAction;
+    private final Facts facts;
+    private final boolean isPositive;
+
+    public Report(final Facts facts, final ConditionalAction conditionalAction, boolean isPositive) {
+        this.facts = facts;
+        this.conditionalAction = conditionalAction;
+        this.isPositive = isPositive;
+    }
+
+    public ConditionalAction getConditionalAction() {
+        return conditionalAction;
+    }
+
+    public Facts getFacts() {
+        return facts;
+    }
+
+    public boolean isPositive() {
+        return isPositive;
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "conditionalAction=" + conditionalAction +
+                ", facts=" + facts +
+                ", isPositive=" + isPositive +
+                '}';
+    }
+}
